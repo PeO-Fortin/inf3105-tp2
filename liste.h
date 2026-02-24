@@ -118,13 +118,21 @@ bool Liste<T>::estVide() const {
 
 template<class T>
 void Liste<T>::vider() {
-  // À compléter.
-  // Requis pour la tâche 3.
+  while (premiere) {
+      enlever_debut();
+  }
 }
 
 template<class T>
 const Liste<T>& Liste<T>::operator=(const Liste<T>& autre) {
-  // À compléter.
+  if (this == &autre) {
+    return *this;
+  }
+  vider();
+  for (Iterateur aCopier = autre.debut(); aCopier; ++aCopier) {
+    inserer_fin(*aCopier);
+  }
+  
   return *this;
 }
 
@@ -146,33 +154,87 @@ const T& Liste<T>::operator[](const Iterateur& i) const {
 
 template<class T>
 typename Liste<T>::Iterateur Liste<T>::inserer(const T& e, const Iterateur& i) {
-  // À compléter.
-  return fin();
+  assert(&i.liste == this);
+  assert(i.courante != nullptr);
+
+  if (i == debut()) {
+      return inserer_debut(e);
+  }
+  
+  if (i.courante == derniere) {
+      inserer_fin(e);
+  }
+
+  Cellule* nouvelle = new Cellule(e,i.courante->precedente,i.courante);
+  i.courante->precedente->suivante = nouvelle;
+  i.courante->precedente = nouvelle;
+
+  return Iterateur (*this, nouvelle);
 }
 
 template<class T>
 typename Liste<T>::Iterateur Liste<T>::inserer_debut(const T& e) {
-  // À compléter.
-  return fin();
+  if (!premiere) {
+    premiere = new Cellule(e);
+    derniere = premiere;
+  } else {
+    Cellule* nouvelle = new Cellule(e);
+    premiere->precedente = nouvelle;
+    nouvelle->suivante = premiere;
+    premiere = nouvelle;
+  }
+
+  return Iterateur(*this, premiere);
 }
 
 template<class T>
 typename Liste<T>::Iterateur Liste<T>::inserer_fin(const T& e) {
-  // À compléter.
-  // Requis pour la tâche 3.
-  return fin();
+  if (!derniere) {
+    derniere = new Cellule(e);
+    premiere = derniere;
+  } else {
+    Cellule* nouvelle = new Cellule(e);
+    derniere->suivante = nouvelle;
+    nouvelle->precedente = derniere;
+    derniere = nouvelle;
+  }
+
+  return Iterateur(*this, derniere);
 }
 
 template<class T>
 typename Liste<T>::Iterateur Liste<T>::enlever(const Iterateur& i) {
-  // À compléter.
-  return fin();
+  assert(&i.liste == this);
+  assert(i.courante != nullptr);
+
+  if (i == debut()) {
+    premiere = premiere->suivante;
+  }
+
+  if (i.courante == derniere) {
+    derniere = derniere->precedente;
+  }
+
+  Cellule* copie = i.courante;
+  copie->precedente->suivante = i.courante->suivante;
+  copie->suivante->precedente = i.courante->precedente;
+
+  Iterateur retour = Iterateur(*this, copie->suivante);
+
+  delete copie;
+  return retour;
 }
 
 template<class T>
 void Liste<T>::enlever_debut() {
-  // À compléter.
-  // Requis pour la tâche 3.
+  Cellule* aEnlever = premiere;
+
+  premiere = premiere->suivante;
+    
+  if(!premiere)
+    derniere = nullptr;
+    
+  delete aEnlever;
 }
 
 template<class T>
@@ -187,9 +249,12 @@ typename Liste<T>::Iterateur Liste<T>::fin() const {
 
 template<class T>
 typename Liste<T>::Iterateur Liste<T>::trouver(const T& e) const {
-  // À compléter.
-  // Probablement non requis pour la tâche #3.
-  return fin();
+  Iterateur iter = debut();
+
+  while(iter && *iter != e)
+    ++iter;
+
+  return iter;
 }
 
 template<class T>
