@@ -3,7 +3,10 @@
 #include <string>
 
 void Texte::chercher(const std::string& mot) const {
-	// TODO : A compléter
+	if(!curseur)
+    curseur = mots.debut();
+
+
 }
 
 void Texte::remplacer(const std::string& mot) {
@@ -34,8 +37,7 @@ const std::istream& operator>>(std::istream& is, Texte& texte) {
   is >> mot;
   texte.mots.inserer_debut(mot);
 
-  while(is) {
-    is >> mot;
+  while(is >> mot) {
     texte.mots.inserer_fin(mot);
   }
 
