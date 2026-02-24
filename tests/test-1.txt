@@ -1,0 +1,3 @@
+chercher world
+remplacer hello
+sauvegarder output.txt
