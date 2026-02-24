@@ -15,17 +15,16 @@ void Texte::annuler() {
 }
 
 std::ostream& operator<<(std::ostream& os, const Texte& texte) {
-  texte.curseur = texte.mots.debut();
+  Liste<std::string>::Iterateur it = texte.mots.debut();
 
-  while(texte.curseur) {
-    os << texte.mots[texte.curseur];
-    ++texte.curseur;
-    if (texte.curseur)
+  while(it) {
+    os << texte.mots[it];
+    ++it;
+    if (it)
       os << " ";
     else
       os << std::endl;
   }
-
   return os;
 }
 
