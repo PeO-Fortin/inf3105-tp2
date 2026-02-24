@@ -259,9 +259,16 @@ typename Liste<T>::Iterateur Liste<T>::trouver(const T& e) const {
 
 template<class T>
 bool Liste<T>::operator==(const Liste& autre) const {
-  if (this == &autre) return true;
-  // À compléter.
-  return false;
+   if(this == &autre) return true;
+    
+    Iterateur gauche = this->debut(), droite = autre.debut();
+
+    for (; gauche && droite; ++gauche, ++droite) {
+        if (*gauche != *droite)
+            return false;
+    }
+
+    return !gauche && !droite;
 }
 
 //----------------------------------------------------//
