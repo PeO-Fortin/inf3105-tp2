@@ -1,5 +1,6 @@
 #include "texte.hpp"
 #include <iostream>
+#include <string>
 
 void Texte::chercher(const std::string& mot) const {
 	// TODO : A compléter
@@ -14,12 +15,31 @@ void Texte::annuler() {
 }
 
 std::ostream& operator<<(std::ostream& os, const Texte& texte) {
-  // TODO : A compléter
+  texte.curseur = texte.mots.debut();
+
+  while(texte.curseur) {
+    os << texte.mots[texte.curseur];
+    ++texte.curseur;
+    if (texte.curseur)
+      os << " ";
+    else
+      os << std::endl;
+  }
+
   return os;
 }
 
 const std::istream& operator>>(std::istream& is, Texte& texte) {
-  // TODO : A compléter
+  std::string mot;
+
+  is >> mot;
+  texte.mots.inserer_debut(mot);
+
+  while(is) {
+    is >> mot;
+    texte.mots.inserer_fin(mot);
+  }
+
   return is;
 }
 
