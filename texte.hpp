@@ -11,7 +11,7 @@
 #include <string>
 
 // Pour la fonction annuler()
-// #include "pile.h"
+#include "pile.h"
 #include "liste.h"
 
 class Texte {
@@ -26,14 +26,18 @@ class Texte {
   // Les objets Modification seront placés dans une pile. 
   // Cela est Nécessaire pour la commande annuler
   // 
-  // Pile<Modification> modifications;
+  Pile<Modification> modifications;
 
 
   class Modification {
     private:
-      // TODO : Ajouter les variables nécessaires.
+      Liste<std::string>::Iterateur position;
+      std::string ancienMot;
+
     public:
-      Modification(/* TODO: A compléter */);
+      Modification(const Liste<std::string>::Iterateur& pos, const std::string& ancien)
+        : position(pos), ancienMot(ancien){}
+        
       friend Texte;
   };
 
