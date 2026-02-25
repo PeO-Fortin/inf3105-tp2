@@ -10,11 +10,15 @@ void Texte::chercher(const std::string& mot) const {
 }
 
 void Texte::remplacer(const std::string& mot) {
-	// TODO : A compléter
+	// TODO : A complï¿½ter
 }
 
 void Texte::annuler() {
-	// TODO : A compléter
+	if(modifications.vide()){
+    return;
+  }
+  Modification derniereModif = modifications.depiler();
+  mots[derniereModif.position] = derniereModif.ancienMot;
 }
 
 std::ostream& operator<<(std::ostream& os, const Texte& texte) {
