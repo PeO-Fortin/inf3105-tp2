@@ -1,12 +1,16 @@
 /*
-  INF3105 - Structures de données et algorithmes
-  UQAM / Département d'informatique
-  Liste doublement chaînée.
-  TP 2 
-
-   À compléter.
-
-   autheurs : Beeckmans, Nicolas et vous 
+ * INF3105 - Structures de données et algorithmes
+ * UQAM / Département d'informatique
+ * Liste doublement chaînée.
+ * TP 2 
+ *
+ * Auteurs : 
+ *
+ * Beeckmans, Nicolas et
+ *
+ * Équipe 22
+ * Ladam, Fatima Zahra - LADF17289101
+ * Fortin, Pierre-Olivier - FORP22028608
 */
 
 #ifndef __LISTE_H__

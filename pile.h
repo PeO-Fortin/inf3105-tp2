@@ -1,10 +1,16 @@
 /*
-  INF3105 - Structures de données et algorithmes
-  UQAM / Département d'informatique
-
-  Implémentation d'une Pile 
-
-  autheur : Beeckmans, Nicolas 
+ * INF3105 - Structures de données et algorithmes
+ * UQAM / Département d'informatique
+ *
+ * Implémentation d'une Pile 
+ *
+ * Auteurs : 
+ *
+ * Beeckmans, Nicolas et
+ *
+ * Équipe 22
+ * Ladam, Fatima Zahra - LADF17289101
+ * Fortin, Pierre-Olivier - FORP22028608
 */
 
 #ifndef __PILE_H__

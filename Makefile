@@ -1,5 +1,6 @@
-# Makefile pour TP4.
-# Adaptez ce fichier au besoin.
+# Équipe 22
+# Ladam, Fatima Zahra LADF17289101
+# Fortin, Pierre-Olivier FORP22028608
 
 # Options standard.
 #OPTIONS = -Wall
@@ -14,8 +15,6 @@ OPTIONS = -O0 -Wall -Wextra -g -Werror --std=c++11
 
 all: cpsed
 
-# Syntaxe : cible : dépendance1 dépendance2 ...
-# Ensuite, la ou les ligne(s) débutant par une tabulation (\t) donne les commandes pour construire une cible
 cpsed: main.o texte.o
 	g++ $(OPTIONS) -o cpsed texte.o main.o
 
