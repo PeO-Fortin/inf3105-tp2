@@ -54,8 +54,7 @@ void Pile<T>::vider() {
 }
 
 template<class T>
-Pile<T>::Cellule::Cellule(const T& e, Cellule* c) : suivante(c) {
-  contenu = e;
+Pile<T>::Cellule::Cellule(const T& e, Cellule* c) : contenu(e), suivante(c) {
 }
 
 template<class T>
