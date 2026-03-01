@@ -1,7 +1,7 @@
 /*
  * Déclaration de la classe Texte
  * 
- *  autheur: Beeckmans, Nicolas
+ *  auteurs: Beeckmans, Nicolas
 */
 
 #ifndef __TEXTE_CPP__
@@ -10,7 +10,6 @@
 #include <istream>
 #include <string>
 
-// Pour la fonction annuler()
 #include "pile.h"
 #include "liste.h"
 
@@ -18,14 +17,9 @@ class Texte {
 
   class Modification;
   Liste<std::string> mots; // La liste des mots du texte
-  // mutable : permet à la variable d'être modifiée même si l'objet est marqué "const"
   mutable Liste<std::string>::Iterateur curseur = mots.fin();
   
-  
-  // Définition de la classe Modification : elle représente une modification dans le texte. 
-  // Les objets Modification seront placés dans une pile. 
-  // Cela est Nécessaire pour la commande annuler
-  // 
+  // Pour la commande annuler 
   Pile<Modification> modifications;
 
 
@@ -37,6 +31,8 @@ class Texte {
     public:
       Modification(const Liste<std::string>::Iterateur& pos, const std::string& ancien)
         : position(pos), ancienMot(ancien){}
+
+      ~Modification(){}
         
       friend Texte;
   };

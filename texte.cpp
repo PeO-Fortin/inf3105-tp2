@@ -3,14 +3,29 @@
 #include <string>
 
 void Texte::chercher(const std::string& mot) const {
-	if(!curseur)
-    curseur = mots.debut();
+	Liste<std::string>::Iterateur tempIter = curseur;
 
+  do{
+    if(!curseur)
+      curseur = mots.debut();
 
+    if(mots[curseur] == mot) return;
+
+    ++curseur;
+
+  }while(curseur != tempIter);
 }
 
 void Texte::remplacer(const std::string& mot) {
-	// TODO : A compl�ter
+  if(curseur) {
+    std::string motRempl = mots[curseur];
+    for(Liste<std::string>::Iterateur i = mots.debut(); i ;++i) {
+      if(mots[i] == mot) {
+        modifications.empiler(Texte::Modification(i, mots[i]));
+        mots[i] = motRempl;
+      }
+    }
+  }	
 }
 
 void Texte::annuler() {
