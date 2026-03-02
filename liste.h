@@ -81,7 +81,7 @@ class Liste {
     Iterateur operator++(int);  // post-incrément (i++)
     Iterateur& operator++();    // pré-incrément (++i)
 
-    // T& operator*(); // Bonne idée? Pourquoi? Qu'arrive-t-il si la liste est constante?
+    // T& operator*(); //
     const T& operator*() const;  // déréférencement
 
     Iterateur& operator=(const Iterateur&);
@@ -97,14 +97,6 @@ class Liste {
   Cellule* premiere;
   Cellule* derniere;
 };
-
-/*
- Puisque Liste<T> est une classe générique, toutes ses définitions doivent être
- inclues après les déclarations. On peut quand même séparer les déclarations et
- les définitions en deux fichiers (liste.h et liste.hcc), à condition d'inclure
- le deuxième (liste.hcc) à la fin du premier (liste.h). Ainsi, un fichier source
- (.cc, .cpp, c++) qui inclut liste.h inclura indirectement aussi liste.hcc.
-*/
 
 // Implémentation des constructeurs, destructeurs et fonctions
 template<class T>
@@ -211,17 +203,19 @@ typename Liste<T>::Iterateur Liste<T>::enlever(const Iterateur& i) {
   assert(&i.liste == this);
   assert(i.courante != nullptr);
 
+  Cellule* copie = i.courante;
+
   if (i == debut()) {
     premiere = premiere->suivante;
+  } else {
+    copie->precedente->suivante = copie->suivante;
   }
 
   if (i.courante == derniere) {
     derniere = derniere->precedente;
+  } else {
+    copie->suivante->precedente = copie->precedente;
   }
-
-  Cellule* copie = i.courante;
-  copie->precedente->suivante = i.courante->suivante;
-  copie->suivante->precedente = i.courante->precedente;
 
   Iterateur retour = Iterateur(*this, copie->suivante);
 

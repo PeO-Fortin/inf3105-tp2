@@ -10,7 +10,6 @@
 #OPTIONS = -g -O0 -Wall
 
 # Les options -O, -O1, -O2, -O3 permettent d'optimiser le code binaire produit.
-# Décommentez la ligne suivante si avant la remise finale
 OPTIONS = -O0 -Wall -Wextra -g -Werror --std=c++11
 
 all: cpsed

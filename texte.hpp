@@ -49,7 +49,7 @@ class Texte {
   public:
     /**
     * Deplace le curseur sur la prochaine occurence du mot à partir du curseur.
-    * Si le mot n'apparait pas entre le curseur et la fin, il faut reprendre la rechercher à partir du début du texte.
+    * Si le mot n'apparait pas entre le curseur et la fin, la rechercher reprend à partir du début du texte.
     */
     void chercher(const std::string& mot) const;
     
