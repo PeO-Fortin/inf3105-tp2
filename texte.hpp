@@ -41,7 +41,19 @@ class Texte {
       Modification(const Liste<std::string>::Iterateur& pos, const std::string& ancien)
         : position(pos), ancienMot(ancien){}
 
+      Modification(const Modification& m)
+        :position(m.position), ancienMot(m.ancienMot){}
+
       ~Modification(){}
+
+      Modification& operator=(const Modification& autre) {
+        if (this == &autre)
+          return *this;
+
+        position = autre.position;
+        ancienMot = autre.ancienMot;
+        return *this;
+      }
         
       friend Texte;
   };
@@ -64,7 +76,7 @@ class Texte {
     void annuler();
 
     /**
-    * Ecrire dans le contenu texte dans le ostream
+    * Ecrit le contenu texte dans le ostream
     */
     friend std::ostream& operator<<(std::ostream& os , const Texte& texte);
   
